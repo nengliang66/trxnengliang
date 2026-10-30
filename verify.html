@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>付款核验｜输入交易哈希查询 TRX 转账是否到账</title>
+<meta name="description" content="输入 TRON 交易哈希，在线核验是否已向收款地址转入正确的 TRX 金额，查看确认数、付款地址与对应笔数。">
+<link rel="canonical" href="https://your-domain.com/verify">
+<meta name="theme-color" content="#05080d">
+<meta name="robots" content="index,follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TRX 能量直营">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="付款核验｜查询 TRX 转账是否到账">
+<meta property="og:description" content="输入交易哈希，核验付款金额、确认数与对应笔数。">
+<meta property="og:url" content="https://your-domain.com/verify">
+<meta property="og:image" content="https://your-domain.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="TRX 能量直营 首页">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#35e0b0"/><stop offset="1" stop-color="#41c9ff"/>
+          </linearGradient>
+        </defs>
+        <rect x="0.9" y="0.9" width="30.2" height="30.2" rx="9" fill="#0a111d" stroke="url(#brandGrad)" stroke-opacity=".65" stroke-width="1.2"/>
+        <path d="M18 5 10.4 17.6h4.9L13.8 27 22 13.2h-5.3z" fill="url(#brandGrad)"/>
+      </svg>
+      <span>TRX<b>能量</b>直营</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="siteNav" aria-label="主导航">
+      <a href="/pricing">价格</a>
+      <a href="/buy-energy">购买能量</a>
+      <a href="/verify" aria-current="page">付款核验</a>
+      <a href="/agents">代理合作</a>
+    </nav>
+
+    <a class="btn btn-primary btn-sm header-cta" href="/buy-energy">立即购买</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="container" style="padding-top:clamp(30px,4vw,52px)">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Verify payment</span>
+      <h1 class="section-title">付款核验</h1>
+      <p class="section-sub">
+        粘贴转账的交易哈希（TxID），直接读取 TRON 主网数据，核对金额、收款地址与确认数。
+        查询在浏览器本地完成，不需要登录。
+      </p>
+    </div>
+
+    <div class="verify-box">
+      <form class="panel" id="verifyForm" novalidate>
+        <div class="field">
+          <label for="txid">TRON 交易哈希（64 位）</label>
+          <div class="verify-form">
+            <input class="input" id="txid" name="txid" type="text" autocomplete="off" spellcheck="false"
+                   placeholder="例如 3f2a…（在钱包的转账详情里复制 TxID）" aria-describedby="txidError">
+            <button class="btn btn-primary" id="verifyBtn" type="submit">核验付款</button>
+          </div>
+          <p class="field-error" id="txidError" role="alert">请输入完整的 64 位交易哈希</p>
+        </div>
+        <input type="hidden" id="targetHex" value="">
+      </form>
+
+      <div class="result" id="result" aria-live="polite">
+        <div class="result-head">
+          <span id="resultTitle">查询结果</span>
+          <span class="badge" id="resultBadge"></span>
+        </div>
+        <dl id="resultRows"></dl>
+        <div class="foot" id="resultFoot"></div>
+      </div>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:clamp(32px,5vw,56px)">
+      <div class="card" data-reveal>
+        <h3>在哪里找交易哈希？</h3>
+        <p>打开钱包的转账记录，点击该笔转账 → 查看详情 → 复制 TxID / 交易哈希。也可以在 Tronscan 的地址页面找到。</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>显示「匹配」之后呢？</h3>
+        <p>说明链上已收到正确金额。系统会自动发放；若 10 分钟仍未到账，把交易哈希发给客服可优先处理。</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>数据来源</h3>
+        <p>查询通过 TronGrid 公共节点读取链上数据，与 Tronscan 显示一致。本页只读，不发起任何交易或授权。</p>
+      </div>
+    </div>
+
+    <div class="notice" style="margin-top:24px">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3 2.5 16.5h15L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v3.5M10 14h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>本页仅做核验，不会触发能量发放。能量是否到账，请在 Tronscan 地址页面的「资源」中查看。</span>
+    </div>
+
+    <div class="cta-band" style="margin-top:clamp(32px,5vw,56px)" data-reveal>
+      <h2>还没付款？先看价格与流程</h2>
+      <p>1 笔起购，扫码转账即完成下单。</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/buy-energy">去购买能量</a>
+        <a class="btn btn-ghost" href="/pricing">价格说明</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <defs>
+              <linearGradient id="brandGradFooter" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#35e0b0"/><stop offset="1" stop-color="#41c9ff"/>
+              </linearGradient>
+            </defs>
+            <rect x="0.9" y="0.9" width="30.2" height="30.2" rx="9" fill="#0a111d" stroke="url(#brandGradFooter)" stroke-opacity=".65" stroke-width="1.2"/>
+            <path d="M18 5 10.4 17.6h4.9L13.8 27 22 13.2h-5.3z" fill="url(#brandGradFooter)"/>
+          </svg>
+          <span>TRX<b>能量</b>直营</span>
+        </a>
+        <p>TRON 能量直营供货，按笔计价、链上可查。仅提供能量委托技术服务，不构成任何投资建议。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <a href="/buy-energy">购买能量</a>
+        <a href="/pricing">价格说明</a>
+        <a href="/verify">付款核验</a>
+      </div>
+      <div class="footer-col">
+        <h4>合作</h4>
+        <a href="/agents">代理合作</a>
+        <a href="/agents#contact">联系客服</a>
+      </div>
+      <div class="footer-col">
+        <h4>资源</h4>
+        <a href="https://tronscan.org" rel="noopener noreferrer nofollow" target="_blank">Tronscan 浏览器</a>
+        <a href="/#faq">常见问题</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> TRX 能量直营 · 保留所有权利</span>
+      <span class="mono" style="font-size:12px">收款地址 TAvzRvSBBQyHYc9hDDxgETQfkXqh555s18</span>
+    </div>
+    <p class="disclaimer">
+      风险提示：数字资产价格波动剧烈，链上转账不可撤销。请务必核对收款地址（TAvzRvSBBQyHYc9hDDxgETQfkXqh555s18）与转账网络（TRON 主网），
+      因个人操作失误导致的资产损失无法追回。本网站仅提供 TRON 能量委托相关技术服务，不吸收存款、不承诺收益。
+    </p>
+  </div>
+</footer>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/site.js"></script>
+<script src="/assets/js/verify.js"></script>
+</body>
+</html>

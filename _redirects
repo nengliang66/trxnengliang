@@ -1,0 +1,9 @@
+# 重定向到干净的 URL（Cloudflare Pages）
+/buy            /buy-energy   301
+/buy.html       /buy-energy   301
+/price          /pricing      301
+/pricing.html   /pricing      301
+/agent          /agents       301
+/agents.html    /agents       301
+/verify.html    /verify       301
+/index.html     /             301

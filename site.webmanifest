@@ -1,0 +1,31 @@
+{
+  "name": "TRX 能量直营",
+  "short_name": "TRX能量",
+  "description": "TRON 能量直营供货，0.5 TRX/笔，链上转账即下单。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#05080d",
+  "theme_color": "#05080d",
+  "icons": [
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

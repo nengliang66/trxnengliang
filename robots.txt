@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# 付款核验页面的查询参数无需收录
+Disallow: /verify?txid=
+
+Sitemap: https://your-domain.com/sitemap.xml

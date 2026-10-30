@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>购买 TRX 能量｜填地址选笔数，扫码转账即可下单</title>
+<meta name="description" content="TRX 能量在线购买：填写接收地址与笔数，页面自动计算应付 TRX，扫码或复制地址转账，链上确认后自动发放能量，1 笔起购。">
+<link rel="canonical" href="https://your-domain.com/buy-energy">
+<meta name="theme-color" content="#05080d">
+<meta name="robots" content="index,follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TRX 能量直营">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="购买 TRX 能量｜填地址选笔数，扫码转账即可下单">
+<meta property="og:description" content="填写接收地址与笔数，页面自动算好应付 TRX，扫码转账即完成下单。">
+<meta property="og:url" content="https://your-domain.com/buy-energy">
+<meta property="og:image" content="https://your-domain.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="TRX 能量直营 首页">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop stop-color="#35e0b0"/><stop offset="1" stop-color="#41c9ff"/>
+          </linearGradient>
+        </defs>
+        <rect x="0.9" y="0.9" width="30.2" height="30.2" rx="9" fill="#0a111d" stroke="url(#brandGrad)" stroke-opacity=".65" stroke-width="1.2"/>
+        <path d="M18 5 10.4 17.6h4.9L13.8 27 22 13.2h-5.3z" fill="url(#brandGrad)"/>
+      </svg>
+      <span>TRX<b>能量</b>直营</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="展开导航菜单">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="siteNav" aria-label="主导航">
+      <a href="/pricing">价格</a>
+      <a href="/buy-energy" aria-current="page">购买能量</a>
+      <a href="/verify">付款核验</a>
+      <a href="/agents">代理合作</a>
+    </nav>
+
+    <a class="btn btn-primary btn-sm header-cta" href="/buy-energy">立即购买</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="container" style="padding-top:clamp(30px,4vw,52px)">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Place order</span>
+      <h1 class="section-title">购买 TRX 能量</h1>
+      <p class="section-sub">两步：填入接收地址与笔数 → 扫码或复制地址转账。链上确认后自动发放，无需注册。</p>
+    </div>
+
+    <div class="notice" style="margin-bottom:22px">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3 2.5 16.5h15L10 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 8v3.5M10 14h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>只支持 <b>TRON 主网（TRX）</b> 转账。请勿使用 ERC20 / BEP20 等其他网络；转错网络无法自动履约，需人工处理。</span>
+    </div>
+
+    <div class="buy-layout">
+      <!-- 1. 表单 -->
+      <form id="buyForm" class="panel buy-form" novalidate>
+        <div class="panel-head">
+          <h2>1 · 接收地址与数量</h2>
+          <span class="hint">1 笔 = 65,000 能量 · 1 小时</span>
+        </div>
+
+        <div class="field">
+          <label for="addr">接收能量的 TRON 地址</label>
+          <input class="input" id="addr" name="addr" type="text" inputmode="text" autocomplete="off" spellcheck="false"
+                 placeholder="T 开头，34 位地址" aria-describedby="addrError" maxlength="42">
+          <p class="field-error" id="addrError" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="qty">购买笔数 <span class="opt">1 笔起，可自定义</span></label>
+          <input class="input" id="qty" name="qty" type="text" inputmode="numeric" value="1" maxlength="6"
+                 aria-describedby="qtyError">
+          <div class="presets" role="group" aria-label="常用笔数">
+            <button class="preset" type="button" data-qty="1" aria-pressed="true">1 笔</button>
+            <button class="preset" type="button" data-qty="5" aria-pressed="false">5 笔</button>
+            <button class="preset" type="button" data-qty="10" aria-pressed="false">10 笔</button>
+            <button class="preset" type="button" data-qty="50" aria-pressed="false">50 笔</button>
+            <button class="preset" type="button" data-qty="100" aria-pressed="false">100 笔</button>
+          </div>
+          <p class="field-error" id="qtyError" role="alert"></p>
+        </div>
+
+        <div class="summary-box">
+          <div class="k">
+            应付总额
+            <span>单价 1.8 TRX / 笔</span>
+          </div>
+          <div class="v"><span class="js-amount" id="payAmount" data-value="1.8">1.8</span><small>TRX</small></div>
+        </div>
+
+        <div class="grid grid-2 keep-2" style="margin-top:16px;gap:12px">
+          <div class="summary-box" style="margin-top:0">
+            <div class="k">能量合计</div>
+            <div class="v" style="font-size:17px"><span id="energyOut">65,000 能量</span></div>
+          </div>
+          <div class="summary-box" style="margin-top:0">
+            <div class="k">购买笔数</div>
+            <div class="v" style="font-size:17px"><span id="unitsOut">1 笔</span></div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit" style="margin-top:18px">
+          确认金额，去转账
+          <svg class="ico" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p style="margin-top:12px;font-size:12.5px;color:var(--muted-2)">
+          点击后会复制应付金额并定位到收款信息。下单不需要注册，转账即生效。
+        </p>
+      </form>
+
+      <!-- 2. 收款卡片 -->
+      <aside class="buy-aside" id="paySection" aria-label="收款信息">
+        <div class="pay-card">
+          <div class="pay-card-top">
+            <span>收款地址 · TRON 主网</span>
+            <span class="pill"><span class="dot" aria-hidden="true"></span>实时直营</span>
+          </div>
+
+          <div class="qr-frame">
+            <img src="/assets/img/qr-pay.svg" width="208" height="208" alt="TRON 收款地址二维码，扫码即可转账" decoding="async">
+          </div>
+          <p class="qr-caption">扫码后核对尾号 <span class="mono">555s18</span>，并手动输入金额</p>
+
+          <div class="addr-field">
+            <code data-addr-text>TAvzRvSBBQyHYc9hDDxgETQfkXqh555s18</code>
+            <button class="copy-btn" type="button" data-copy="addr" data-copy-msg="收款地址已复制">复制</button>
+          </div>
+
+          <div class="pay-amount">
+            <span class="k">应付金额</span>
+            <span class="v"><span class="js-amount" id="payAmountSide" data-value="1.8">1.8</span><small>TRX</small></span>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:14px">
+            <button class="btn btn-ghost btn-sm" type="button" style="flex:1" data-copy="amount" data-copy-msg="金额已复制">复制金额</button>
+            <a class="btn btn-ghost btn-sm" href="/assets/img/qr-pay.png" download="trx-pay-qr.png" style="flex:1">保存二维码</a>
+          </div>
+
+          <p class="pay-card-note">
+            仅支持 TRON 主网 TRX。转账后能量自动委托至你填写的地址，有效期 1 小时。
+          </p>
+        </div>
+
+        <div class="panel" style="margin-top:16px">
+          <div class="panel-head" style="margin-bottom:10px">
+            <h2 style="font-size:14px">安全提示</h2>
+          </div>
+          <p style="font-size:13px;color:var(--muted)">
+            本页收款地址为唯一地址，不会通过私信、群聊临时更换。任何以「地址升级」「补差价」为由让你转币到其他地址的，都是诈骗。
+          </p>
+        </div>
+      </aside>
+
+      <!-- 3. 转账说明 -->
+      <div class="panel buy-steps">
+        <div class="panel-head">
+          <h2>2 · 转账并等待发放</h2>
+        </div>
+        <ul class="mini-steps">
+          <li><span class="n">1</span><span>用任意 TRON 钱包（TronLink、imToken、交易所提币）向右侧地址转入页面显示的金额。</span></li>
+          <li><span class="n">2</span><span>网络选择 <b style="color:var(--text)">TRON / TRC20</b>，不要填写任何备注。</span></li>
+          <li><span class="n">3</span><span>转账成功后等待区块确认，系统识别后自动把能量委托到你的地址。</span></li>
+          <li><span class="n">4</span><span>在 Tronscan 地址页面的「资源 / Resources」中查看能量是否到账。</span></li>
+        </ul>
+        <p style="margin-top:16px;font-size:13px;color:var(--muted-2)">
+          已付款但 10 分钟仍未到账？复制交易哈希到 <a href="/verify" style="color:var(--mint)">付款核验</a> 查询，或联系客服人工处理。
+        </p>
+      </div>
+
+      <!-- 4. FAQ -->
+      <div class="panel buy-faq">
+        <div class="panel-head">
+          <h2>常见疑问</h2>
+        </div>
+        <div class="faq" style="border-top:0">
+          <details>
+            <summary>为什么不需要注册账号？</summary>
+            <div class="answer">订单就是一笔链上转账。系统按「收款地址 + 金额 + 时间」识别付款并直接委托能量，因此不需要账号体系。</div>
+          </details>
+          <details>
+            <summary>可以帮别人买吗？</summary>
+            <div class="answer">可以。接收地址填对方的 TRON 地址即可，能量会委托到该地址。</div>
+          </details>
+          <details>
+            <summary>金额转多了或转少了怎么办？</summary>
+            <div class="answer">系统按实际到账金额折算笔数发放；若金额无法整除单价，差额部分会按笔数向下取整，余量请联系客服处理。</div>
+          </details>
+          <details>
+            <summary>能量有使用期限吗？</summary>
+            <div class="answer">有。委托有效期为 1 小时，到期自动回收，不影响地址内的 TRX 余额。</div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band" style="margin-top:40px" data-reveal>
+      <h2>需要批量采购或长期供货？</h2>
+      <p>代理通道支持更大额度、专属对接与对账方式协商，价格另议。</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/agents">了解代理合作</a>
+        <a class="btn btn-ghost" href="/pricing">查看价格规则</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <defs>
+              <linearGradient id="brandGradFooter" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#35e0b0"/><stop offset="1" stop-color="#41c9ff"/>
+              </linearGradient>
+            </defs>
+            <rect x="0.9" y="0.9" width="30.2" height="30.2" rx="9" fill="#0a111d" stroke="url(#brandGradFooter)" stroke-opacity=".65" stroke-width="1.2"/>
+            <path d="M18 5 10.4 17.6h4.9L13.8 27 22 13.2h-5.3z" fill="url(#brandGradFooter)"/>
+          </svg>
+          <span>TRX<b>能量</b>直营</span>
+        </a>
+        <p>TRON 能量直营供货，按笔计价、链上可查。仅提供能量委托技术服务，不构成任何投资建议。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <a href="/buy-energy">购买能量</a>
+        <a href="/pricing">价格说明</a>
+        <a href="/verify">付款核验</a>
+      </div>
+      <div class="footer-col">
+        <h4>合作</h4>
+        <a href="/agents">代理合作</a>
+        <a href="/agents#contact">联系客服</a>
+      </div>
+      <div class="footer-col">
+        <h4>资源</h4>
+        <a href="https://tronscan.org" rel="noopener noreferrer nofollow" target="_blank">Tronscan 浏览器</a>
+        <a href="/#faq">常见问题</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> TRX 能量直营 · 保留所有权利</span>
+      <span class="mono" style="font-size:12px">收款地址 TAvzRvSBBQyHYc9hDDxgETQfkXqh555s18</span>
+    </div>
+    <p class="disclaimer">
+      风险提示：数字资产价格波动剧烈，链上转账不可撤销。请务必核对收款地址（TAvzRvSBBQyHYc9hDDxgETQfkXqh555s18）与转账网络（TRON 主网），
+      因个人操作失误导致的资产损失无法追回。本网站仅提供 TRON 能量委托相关技术服务，不吸收存款、不承诺收益。
+    </p>
+  </div>
+</footer>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>
